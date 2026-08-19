@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+<?php include "topbar.php" ?>
     
     
     <div class="d-flex justify-content-center">
@@ -30,6 +30,19 @@
             </div>
 
             <div class="form-floating mt-3 mb-3">
+                <select name="cursoEstudante" id="cursoEstudante" placeholder="Pronome" class="form-control">
+                    <option value="TECINF" selected>Técnico em Informática para Internet</option>
+                    <option value="TECJOG">Técnico em Programação de Jogos Digitais</option>
+                    <option value="TECMEC">Técnico em Mecânica</option>
+                    <option value="TECAUT">Técnico em Automação Industrial</option>
+                    <option value="TECELE">Técnico em Eletrotécnica</option>
+                </select>
+                <label for="Pronome">Selecione o seu curso</label>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-floating mt-3 mb-3">
                 <input type="email" name="emailEstudante" id="emailEstudante" placeholder="Email" class="form-control">
                 <label for="emailEstudante">Email</label>
                 <div class="valid-feedback"></div>
@@ -47,6 +60,7 @@
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
+            
 
             <div class="form-floating mt-3 mb-3">
                 <input type="password" name="senhaEstudante" id="senhaEstudante" placeholder="Senha" class="form-control" minlength="3" maxlength="8">
@@ -68,4 +82,4 @@
     </div>
 </div>
 
-<?php include "footer.php" ?>
+<?php include "bottomBar.php" ?>

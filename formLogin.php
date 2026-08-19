@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+<?php include "topBar.php" ?>
 
 
     <?php
@@ -45,4 +45,4 @@
     </div>
 
 
-<?php include "footer.php" ?>
+<?php include "bottomBar.php" ?>

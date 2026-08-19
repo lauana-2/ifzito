@@ -3,7 +3,7 @@
     $hostBD   = "localhost"; //Define o local do servidor de BD
     $userBD   = "root"; //Define o usuário do BD (Padrão: root)
     $senhaBD  = "root"; //Define a senha do BD (Padrão: "" [Em branco]);
-    $database = "ifizito"; //Define com qual base será realizada a conexão
+    $database = "ifzito"; //Define com qual base será realizada a conexão
 
     //Função do PHP para estabelecer a conexão com o BD
     $conn = mysqli_connect($hostBD, $userBD, $senhaBD, $database);
