@@ -22,6 +22,8 @@
         $_SESSION['fotoEstudante']  = $registro['fotoEstudante'];
         $_SESSION['nomeEstudante']  = $registro['nomeEstudante'];
         $_SESSION['emailEstudante'] = $registro['emailEstudante'];
+        $_SESSION['cursoEstudante'] = $registro['cursoEstudante'];
+        $_SESSION['ano_estudante']  = $registro['ano_estudante'];
         $_SESSION['logado']       = true;
 
         //Redireciona o usuário para a página inicial

@@ -4,7 +4,7 @@
     //Verifica se o método de envio do formEstudante é POST
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         //Cria variáveis para armazenar as informações passadas pelo $_POST[]
-        $fotoEstudante = $nomeEstudante = $dataNascimentoEstudante = $emailEstudante = $senhaEstudante = $confirmarSenhaEstudante = "";
+        $fotoEstudante = $nomeEstudante = $dataNascimentoEstudante = $cursoEstudante = $ano_estudante = $emailEstudante = $senhaEstudante = $pronome = $confirmarSenhaEstudante = " ";
 
         //Variável booleana para controle de erros de preenchimento
         $erroPreenchimento = false;
@@ -25,6 +25,18 @@
                 echo "<div class='alert alert-warning text-center'>O campo <strong>NOME</strong> deve conter apenas letras!</div>";
                 $erroPreenchimento = true;
             }
+        }
+
+        //Validação do campo emailEstudante
+        //Utiliza a função empty() para verificar se o $_POST["emailEstudante"] está vazio
+        if(empty($_POST["emailEstudante"])){
+            //Se estiver vazio, exibe alerta e altera a variável $erroPreenchimento para true
+            echo "<div class='alert alert-warning text-center'>O campo <strong>EMAIL</strong> é obrigatório!</div>";
+            $erroPreenchimento = true;
+        }
+        else{
+            //Se não estiver vazio, o dado é filtrado e armazenado na variável PHP
+            $emailEstudante = filtrar_entrada($_POST["emailEstudante"]);
         }
 
         //Validação do campo dataNascimentoEstudante
@@ -51,17 +63,30 @@
             }
         }
 
-        //Validação do campo emailEstudante
-        //Utiliza a função empty() para verificar se o $_POST["emailEstudante"] está vazio
-        if(empty($_POST["emailEstudante"])){
+        //Validação do campo cursoEstudante
+        //Utiliza a função empty() para verificar se o $_POST["cursoEstudante"] está vazio
+        if(empty($_POST["cursoEstudante"])){
             //Se estiver vazio, exibe alerta e altera a variável $erroPreenchimento para true
-            echo "<div class='alert alert-warning text-center'>O campo <strong>EMAIL</strong> é obrigatório!</div>";
+            echo "<div class='alert alert-warning text-center'>O campo <strong>CURSO</strong> é obrigatório!</div>";
             $erroPreenchimento = true;
         }
         else{
             //Se não estiver vazio, o dado é filtrado e armazenado na variável PHP
-            $emailEstudante = filtrar_entrada($_POST["emailEstudante"]);
+            $cursoEstudante = filtrar_entrada($_POST["cursoEstudante"]);
         }
+
+        //Validação do campo ano_estudante
+        //Utiliza a função empty() para verificar se o $_POST["ano_estudante"] está vazio
+        if(empty($_POST["ano_estudante"])){
+            //Se estiver vazio, exibe alerta e altera a variável $erroPreenchimento para true
+            echo "<div class='alert alert-warning text-center'>O campo <strong>ANO</strong> é obrigatório!</div>";
+            $erroPreenchimento = true;
+        }
+        else{
+            //Se não estiver vazio, o dado é filtrado e armazenado na variável PHP
+            $ano_estudante = filtrar_entrada($_POST["ano_estudante"]);
+        }
+
 
         //Validação do campo senhaEstudante
         //Utiliza a função empty() para verificar se o $_POST["senhaEstudante"] está vazio
@@ -75,6 +100,19 @@
             //Usa a função md5() para criptografar a $senhaEstudante 
             $senhaEstudante = md5(filtrar_entrada($_POST["senhaEstudante"]));
         }
+
+        //Validação do campo pronome
+        //Utiliza a função empty() para verificar se o $_POST["pronome"] está vazio
+        if (!isset($_POST["pronome"]) || trim($_POST["pronome"]) === "") {
+            echo "<div class='alert alert-warning text-center'>
+                    O campo <strong>PRONOME</strong> é obrigatório!
+                </div>";
+            $erroPreenchimento = true;
+        } 
+        else {
+            $pronome = filtrar_entrada($_POST["pronome"]);
+        }
+
 
         //Validação do campo confirmarSenhaEstudante
         //Utiliza a função empty() para verificar se o $_POST["confirmarSenhaEstudante"] está vazio
@@ -93,6 +131,7 @@
                 $erroPreenchimento = true;
             }
         }
+
 
         //Início da validação do campo fotoEstudante
         $diretorio    = "img/"; //Define para qual diretório as imagens serão movidas
@@ -131,8 +170,8 @@
         if(!$erroPreenchimento && !$erroUpload){
 
             //Cria uma variável para armazenar a QUERY que realiza a inserção de dados do Usuário na tabela Estudantes
-            $inserirEstudante = "INSERT INTO estudantes (fotoEstudante, nomeEstudante, dataNascimentoEstudante, emailEstudante, senhaEstudante)
-                                            VALUES ('$fotoEstudante', '$nomeEstudante', '$dataNascimentoEstudante', '$emailEstudante', '$senhaEstudante')";
+            $inserirEstudante = "INSERT INTO estudantes (fotoEstudante, nomeEstudante, dataNascimentoEstudante, cursoEstudante, ano_estudante, emailEstudante, senhaEstudante, pronome)
+                                            VALUES ('$fotoEstudante', '$nomeEstudante', '$dataNascimentoEstudante', '$cursoEstudante', $ano_estudante, '$emailEstudante', '$senhaEstudante' '$pronome')";
 
             //Inclui o arquivo de conexão com o Banco de Dados
             include "conexaoBD.php";
@@ -157,12 +196,24 @@
                                 <td>$diaNascimentoEstudante/$mesNascimentoEstudante/$anoNascimentoEstudante</td>
                             </tr>
                             <tr>
+                                <th>CURSO</th>
+                                <td>$cursoEstudante</td>
+                            </tr>
+                            <tr>
+                                <th>SÉRIE</th>
+                                <td>$ano_estudante</td>
+                            </tr>
+                            <tr>
                                 <th>EMAIL</th>
                                 <td>$emailEstudante</td>
                             </tr>
                             <tr>
                                 <th>SENHA</th>
                                 <td>$senhaEstudante</td>
+                            </tr>
+                            <tr>
+                                <th>PRONOME</th>
+                                <td>$pronome</td>
                             </tr>
                             <tr>
                                 <th>CONFIRMAR SENHA</th>

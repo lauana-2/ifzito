@@ -5,152 +5,116 @@
         header("Location: formLogin.php");
         exit;
     }
+
+    $id_estudante = $_SESSION['id_estudante'];
+
 ?>
 
 <?php include "header.php" ?>
 
 <!-- Begin Page Content -->
-                <div class="container-fluid">
+<div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Matérias</h1>
-                        <a href="novaMateria.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Nova Matéria</a>
-                    </div>
-                    <!-- Content Row -->
-                    <div class="row">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Discplinas</h1>
+    </div>
+    
+    <!-- Content Row -->
+    <div class="row">
 
-                    <!-- Content Row -->
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
 
-                    <div class="row">
-
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
+                <!-- Content Row -->
+                <div class="row">
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4 ">
+                        <div class="col-lg-12 mb-4 ">
 
                             <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tem que faze</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Português<span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Matemática<span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">História<span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Geografia<span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Filosofia<span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div><br>
-                                    <h4 class="small font-weight-bold">Sociologia<span
-                                            class="float-right">30%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 30%"
-                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Português
-                                            <div class="text-white-50 small">divertiso isso aqui</div>
-                                        </div>
-                                    </div>
+                            <?php
+
+                                //1ª Parte: Prepara a QUERY e exibe o TOTAL de Registros
+
+                                //QUERY para listar TODOS os registros da tabela Usuarios
+                                $listarDisciplinas = "SELECT
+                                    e.id_estudante,
+                                    e.nomeEstudante,
+                                    e.cursoEstudante,
+                                    e.ano_estudante,
+                                    c.id_curso,
+                                    cd.id_curso_disciplina,
+                                    cd.ano,
+                                    d.id_disciplina,
+                                    d.nome_disciplina
+                                FROM estudantes AS e
+                                INNER JOIN curso AS c
+                                    ON c.sigla = e.cursoEstudante
+                                INNER JOIN curso_disciplina AS cd
+                                    ON cd.id_curso = c.id_curso
+                                    AND cd.ano = e.ano_estudante
+                                INNER JOIN disciplina AS d
+                                    ON d.id_disciplina = cd.id_disciplina
+                                WHERE e.id_estudante = $id_estudante
+                                ORDER BY d.nome_disciplina";
+
+
+                                include "conexaoBD.php"; //Inclui o arquivo de conexão com o Banco de Dados
+                                //A função mysqli_query() executa a QUERY no Banco de Dados
+                                //A função die() encerra o carregamento da página
+                                $res = mysqli_query($conn, $listarDisciplinas);
+
+                                $totalDisciplinas = mysqli_num_rows($res);
+
+                                echo "<div class='alert alert-info text-center'>
+                                        Você está cursando <strong>$totalDisciplinas</strong> disciplinas! <i class='bi bi-emoji-smile'></i>
+                                    </div>";
+                               
+
+
+                                    include "conexaoBD.php"; //Inclui o arquivo de conexão com o Banco de Dados
+                                    //A função mysqli_query() executa a QUERY no Banco de Dados
+                                    //A função die() encerra o carregamento da página
+                                    $res = mysqli_query($conn, $listarDisciplinas);
+
+                                ?>
+
+                                <div class="card-body">
+
+                                <?php
+
+                                    while ($disciplina = mysqli_fetch_assoc($res)) {
+
+                                        $nomeDisciplina = $disciplina['nome_disciplina'];
+
+                                        // Por enquanto, o progresso começa em 0%
+                                        $progresso = 0;
+
+                                        echo "
+                                            <h4 class='small font-weight-bold'>
+                                                $nomeDisciplina
+                                                <span class='float-right'>$progresso%</span>
+                                            </h4>
+
+                                            <div class='progress mb-4'>
+                                                <div
+                                                    class='progress-bar bg-primary'
+                                                    role='progressbar'
+                                                    style='width: {$progresso}%'
+                                                    aria-valuenow='$progresso'
+                                                    aria-valuemin='0'
+                                                    aria-valuemax='100'>
+                                                </div>
+                                            </div>
+                                        ";
+                                    }
+
+                                ?>
+
                                 </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Matemática
-                                            <div class="text-white-50 small">esse não presta não</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            História
-                                            <div class="text-white-50 small">é alguma coisa</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Geografia
-                                            <div class="text-white-50 small">compreensão equivocada dos fatos</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Filosofia
-                                            <div class="text-white-50 small">esse pensa</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Sociologia
-                                            <div class="text-white-50 small">e a barriguinha em?</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Espanhol
-                                            <div class="text-black-50 small">ariba ariba</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Gestão de web sites
-                                            <div class="text-white-50 small">meme boazuda</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
 
