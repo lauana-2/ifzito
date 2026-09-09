@@ -134,14 +134,9 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
         <div id="content">
 
             <!-- Topbar -->
+             
+
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" type="button">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"></form>
-
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
@@ -152,18 +147,24 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
                              alt="Foto do perfil">
                     <?php endif; ?>
 
-                    <div class="dropdown mr-5">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo htmlspecialchars($primeiroNome, ENT_QUOTES, 'UTF-8'); ?>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Função 1</a></li>
-                            <li><a class="dropdown-item" href="#">Função 2</a></li>
-                            <li><a class="dropdown-item" href="#">Função 3</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
-                        </ul>
-                    </div>
+                 <div class="d-flex align-items-center mr-4">
+                    <span class="mr-3 font-weight-bold text-gray-800">
+                        Olá,
+                        <?php echo htmlspecialchars($primeiroNome, ENT_QUOTES, 'UTF-8'); ?>
+                    </span>
+                </div>
+
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" type="button">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"></form>
+                <div style="margin: 15px;">
+                    <a href="logout.php" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-sign-out-alt mr-1"></i>
+                        Sair
+                    </a>
+                </div>
                 <?php else: ?>
                     <a href="formLogin.php" class="btn btn-success">Login</a>
                 <?php endif; ?>

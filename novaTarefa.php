@@ -31,8 +31,8 @@ $disciplinas = mysqli_query($conn, "SELECT id_disciplina, nome_disciplina FROM d
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="text" name="tituloTarefa" id="tituloTarefa" class="form-control" maxlength="100" required>
-                <label for="tituloTarefa">Título da tarefa</label>
+                <input type="text" name="nomeTarefa" id="nomeTarefa" class="form-control" maxlength="100" required>
+                <label for="nomeTarefa">Título da tarefa</label>
             </div>
 
             <div class="form-floating mt-3 mb-3">

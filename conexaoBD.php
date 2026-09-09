@@ -2,7 +2,7 @@
 
     $hostBD   = "localhost"; //Define o local do servidor de BD
     $userBD   = "root"; //Define o usuário do BD (Padrão: root)
-    $senhaBD  = ""; //Define a senha do BD (Padrão: "" [Em branco]);
+    $senhaBD  = "root"; //Define a senha do BD (Padrão: "" [Em branco]);
     $database = "ifzito"; //Define com qual base será realizada a conexão
 
     //Função do PHP para estabelecer a conexão com o BD

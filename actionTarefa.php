@@ -1,15 +1,103 @@
 <?php
+
 include "conexaoBD.php";
 
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: novaTarefa.php");
+    header("Location: tarefas.php");
     exit();
 }
 
-$idDisciplina = filter_input(INPUT_POST, 'id_disciplina', FILTER_VALIDATE_INT);
-$nomeTarefa = trim($_POST['nomeTarefa'] ?? '');
-$descricaoTarefa = trim($_POST['descricaoTarefa'] ?? '');
+$acao = $_POST['acao'] ?? 'nova';
 
+if ($acao === 'excluir') {
+
+    $idTarefa = filter_input(
+        INPUT_POST,
+        'id_tarefa',
+        FILTER_VALIDATE_INT
+    );
+
+    if (!$idTarefa) {
+
+        header("Location: tarefas.php");
+        exit();
+
+    }
+
+    $excluirAnotacoes = mysqli_prepare(
+
+        $conn,
+
+        "DELETE FROM anotacoes_tarefa
+         WHERE id_tarefa = ?"
+
+    );
+
+    mysqli_stmt_bind_param(
+        $excluirAnotacoes,
+        "i",
+        $idTarefa
+    );
+
+    mysqli_stmt_execute($excluirAnotacoes);
+    mysqli_stmt_close($excluirAnotacoes);
+
+    $excluirTarefa = mysqli_prepare(
+
+        $conn,
+
+        "DELETE FROM tarefas
+         WHERE idTarefa = ?"
+
+    );
+
+    mysqli_stmt_bind_param(
+        $excluirTarefa,
+        "i",
+        $idTarefa
+    );
+
+    $executou = mysqli_stmt_execute(
+        $excluirTarefa
+    );
+
+    mysqli_stmt_close(
+        $excluirTarefa
+    );
+
+    if ($executou) {
+
+        header(
+            "Location: tarefas.php?excluido=1"
+        );
+
+        exit();
+
+    }
+
+    header(
+        "Location: tarefas.php?erro=erroExcluir"
+    );
+
+    exit();
+
+}
+
+
+$idDisciplina = filter_input(
+    INPUT_POST,
+    'id_disciplina',
+    FILTER_VALIDATE_INT
+);
+
+$nomeTarefa = trim(
+    $_POST['nomeTarefa'] ?? ''
+);
+
+$descricaoTarefa = trim(
+    $_POST['descricaoTarefa'] ?? ''
+);
 if (!$idDisciplina || $nomeTarefa === '') {
     header("Location: novaTarefa.php?erro=" . urlencode("Preencha a disciplina e o título da tarefa."));
     exit();

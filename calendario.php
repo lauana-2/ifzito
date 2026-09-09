@@ -71,9 +71,9 @@ include "header.php";
 
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a class="btn btn-primary" href="?mes=<?php echo $mesAnterior; ?>&ano=<?php echo $anoAnterior; ?>">◀</a>
+        <a class="btn btn-success" href="?mes=<?php echo $mesAnterior; ?>&ano=<?php echo $anoAnterior; ?>">🠔</a>
         <h2 class="mb-0"><?php echo $nomesMeses[$mes]; ?> / <?php echo $ano; ?></h2>
-        <a class="btn btn-primary" href="?mes=<?php echo $proximoMes; ?>&ano=<?php echo $proximoAno; ?>">▶</a>
+        <a class="btn btn-success" href="?mes=<?php echo $proximoMes; ?>&ano=<?php echo $proximoAno; ?>">➞</a>
     </div>
 
     <div class="card shadow mb-4">
@@ -109,7 +109,7 @@ include "header.php";
 
                                 foreach ($eventos as $evento) {
                                     if (($evento['data'] ?? '') === $dataAtual) {
-                                        echo '<div class="small bg-primary text-white p-1 mt-1 rounded">';
+                                        echo '<div class="small bg-success text-white p-1 mt-1 rounded">';
                                         echo '<strong>' . htmlspecialchars($evento['titulo'] ?? '', ENT_QUOTES, 'UTF-8') . '</strong><br>';
                                         echo htmlspecialchars($evento['descricao'] ?? '', ENT_QUOTES, 'UTF-8');
                                         echo '</div>';
@@ -120,8 +120,8 @@ include "header.php";
                                 <button
                                     type="button"
                                     class="btn btn-sm btn-success mt-2"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modalEvento"
+                                    data-toggle="modal"
+                                    data-target="#modalEvento"
                                     data-data="<?php echo $dataAtual; ?>">
                                     +
                                 </button>
@@ -155,7 +155,14 @@ include "header.php";
             <form method="post">
                 <div class="modal-header">
                     <h5 class="modal-title">Novo Evento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-success mt-2"
+                    data-toggle="modal"
+                    data-target="#modalEvento"
+                    data-data="<?php echo $dataAtual; ?>">
+                    +
+                </button>
                 </div>
 
                 <div class="modal-body">
@@ -170,7 +177,14 @@ include "header.php";
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        data-dismiss="modal">
+
+                        Cancelar
+
+                    </button>
                     <button type="submit" class="btn btn-success">Salvar evento</button>
                 </div>
             </form>
@@ -185,13 +199,20 @@ include "header.php";
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('[data-bs-target="#modalEvento"]').forEach(function (botao) {
-            botao.addEventListener('click', function () {
-                document.getElementById('dataEvento').value = this.getAttribute('data-data');
-            });
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('[data-target="#modalEvento"]').forEach(function (botao) {
+
+        botao.addEventListener('click', function () {
+
+            document.getElementById('dataEvento').value =
+                this.getAttribute('data-data');
+
         });
+
     });
+
+});
 </script>
 
 <?php include "footer.php"; ?>

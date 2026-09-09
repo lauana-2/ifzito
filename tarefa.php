@@ -142,6 +142,7 @@ include "header.php";
                     <?php else: ?>
                         <p class="text-muted mb-0">Esta tarefa não possui uma descrição.</p>
                     <?php endif; ?>
+
                 </div>
             </div>
         </div>

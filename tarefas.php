@@ -31,7 +31,7 @@ include "header.php";
 
     <?php if (isset($_GET['sucesso'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Tarefa cadastrada!</strong> A tarefa foi salva no banco de dados e já está disponível nesta página.
+            <strong>Tarefa cadastrada com sucesso!</strong> 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
         </div>
     <?php endif; ?>
@@ -64,10 +64,48 @@ include "header.php";
                                     <i class="fas fa-tasks fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <div class="mt-3">
-                                <a href="tarefa.php?id=<?php echo (int) $tarefa['idTarefa']; ?>" class="btn btn-outline-success btn-sm">
-                                    Ver tarefa <i class="fas fa-arrow-right ml-1"></i>
+                            <div class="mt-3 d-flex align-items-center">
+
+                                <!-- BOTÃO VER TAREFA -->
+                                <a 
+                                    href="tarefa.php?id=<?php echo (int) $tarefa['idTarefa']; ?>" 
+                                    class="btn btn-outline-success btn-sm mr-2"
+                                >
+                                    Ver tarefa 
+                                    <i class="fas fa-arrow-right ml-1"></i>
                                 </a>
+
+
+                                <!-- BOTÃO EXCLUIR TAREFA -->
+                                <form 
+                                    action="actionTarefa.php" 
+                                    method="POST"
+                                    onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa? Todas as anotações também serão excluídas.');"
+                                >
+
+                                    <input 
+                                        type="hidden" 
+                                        name="acao" 
+                                        value="excluir"
+                                    >
+
+                                    <input 
+                                        type="hidden" 
+                                        name="id_tarefa" 
+                                        value="<?php echo (int) $tarefa['idTarefa']; ?>"
+                                    >
+
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn btn-outline-danger btn-sm"
+                                    >
+                                        Excluir 
+                                        <i class="fas fa-trash ml-1"></i>
+                                    </button>
+
+                                </form>
+
                             </div>
                         </div>
                     </div>
