@@ -42,12 +42,12 @@
                 <div class="invalid-feedback"></div>
             </div>
 
-             <div class="form-floating mt-3 mb-3">
+            <div class="form-floating mt-3 mb-3">
                 <select name="ano_estudante" id="ano_estudante" placeholder="Série" class="form-control">
-                    <option value="PrimeiroAno">1° ano</option>
-                    <option value="SegundoAno">2° ano</option>
-                    <option value="TerceiroAno">3° ano</option>
-                    <option value="QuartoAno">4° ano</option>
+                    <option value="1">1° ano</option>
+                    <option value="2">2° ano</option>
+                    <option value="3">3° ano</option>
+                    <option value="4">4° ano</option>
                 </select>
                 <label for="Série">Selecione sua série:</label>
                 <div class="valid-feedback"></div>

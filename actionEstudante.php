@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+
 
 <?php
     //Verifica se o método de envio do formEstudante é POST
@@ -171,68 +171,113 @@
 
             //Cria uma variável para armazenar a QUERY que realiza a inserção de dados do Usuário na tabela Estudantes
             $inserirEstudante = "INSERT INTO estudantes (fotoEstudante, nomeEstudante, dataNascimentoEstudante, cursoEstudante, ano_estudante, emailEstudante, senhaEstudante, pronome)
-                                            VALUES ('$fotoEstudante', '$nomeEstudante', '$dataNascimentoEstudante', '$cursoEstudante', $ano_estudante, '$emailEstudante', '$senhaEstudante' '$pronome')";
+                                            VALUES ('$fotoEstudante', '$nomeEstudante', '$dataNascimentoEstudante', '$cursoEstudante', $ano_estudante, '$emailEstudante', '$senhaEstudante' , '$pronome')";
 
             //Inclui o arquivo de conexão com o Banco de Dados
             include "conexaoBD.php";
-
-            //A função mysqli_connect() executa a QUERY no BD
-            //Se conseguir executar a QUERY, exibe alerta de sucesso e a tabela com os dados cadastrados
+            
             if(mysqli_query($conn, $inserirEstudante)){
+            ?>
 
-                echo "<div class='alert alert-success text-center'>Os dados do <strong>USUÁRIO</strong> foram cadastrados com sucesso!</div>";
-                echo "
-                    <div class='container mt-3 mb-3'>
-                        <div class='container mt-3 mb-3 text-center'>
-                            <img src='$fotoEstudante' title='Foto de $nomeEstudante' style='width:150px' class='img-thumbnail'>
+            <!DOCTYPE html>
+            <html lang="pt-br">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+                <title>Cadastro realizado</title>
+
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            </head>
+
+            <body>
+
+                <div class="container mt-5 mb-5">
+
+                    <div class="card shadow mx-auto" style="max-width: 600px;">
+
+                        <div class="card-body">
+
+                            <h2 class="text-center mb-4">
+                                Cadastro realizado com sucesso! 🎉
+                            </h2>
+
+                            <div class="text-center mb-4">
+
+                                <img 
+                                    src="<?php echo $fotoEstudante; ?>"
+                                    alt="Foto de <?php echo $nomeEstudante; ?>"
+                                    style="width:150px; height:150px; object-fit:cover;"
+                                    class="img-thumbnail"
+                                >
+
+                            </div>
+
+                            <table class="table table-bordered">
+
+                                <tr>
+                                    <th>Nome</th>
+                                    <td><?php echo $nomeEstudante; ?></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Data de nascimento</th>
+                                    <td>
+                                        <?php 
+                                        echo "$diaNascimentoEstudante/$mesNascimentoEstudante/$anoNascimentoEstudante";
+                                        ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Curso</th>
+                                    <td><?php echo $cursoEstudante; ?></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Série</th>
+                                    <td><?php echo $ano_estudante; ?>° ano</td>
+                                </tr>
+
+                                <tr>
+                                    <th>E-mail</th>
+                                    <td><?php echo $emailEstudante; ?></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Pronome</th>
+                                    <td><?php echo $pronome; ?></td>
+                                </tr>
+
+                            </table>
+
+                            <div class="text-center mt-4">
+
+                                <a href="formLogin.php" class="btn btn-dark">
+                                    Ir para o Login
+                                </a>
+
+                            </div>
+
                         </div>
-                        <table class='table'>
-                            <tr>
-                                <th>NOME</th>
-                                <td>$nomeEstudante</td>
-                            </tr>
-                            <tr>
-                                <th>DATA DE NASCIMENTO</th>
-                                <td>$diaNascimentoEstudante/$mesNascimentoEstudante/$anoNascimentoEstudante</td>
-                            </tr>
-                            <tr>
-                                <th>CURSO</th>
-                                <td>$cursoEstudante</td>
-                            </tr>
-                            <tr>
-                                <th>SÉRIE</th>
-                                <td>$ano_estudante</td>
-                            </tr>
-                            <tr>
-                                <th>EMAIL</th>
-                                <td>$emailEstudante</td>
-                            </tr>
-                            <tr>
-                                <th>SENHA</th>
-                                <td>$senhaEstudante</td>
-                            </tr>
-                            <tr>
-                                <th>PRONOME</th>
-                                <td>$pronome</td>
-                            </tr>
-                            <tr>
-                                <th>CONFIRMAR SENHA</th>
-                                <td>$confirmarSenhaEstudante</td>
-                            </tr>
-                        </table>
+
                     </div>
-                ";
+
+                </div>
+
+            </body>
+
+            </html>
+
+            <?php
             }
             else{
-                echo "<div class='alert alert-danger text-center'>Erro ao tentar cadastrar <strong>USUÁRIO</strong> no banco de dados $database!</div>";
+                echo "<div class='alert alert-danger text-center'>
+                        Erro ao tentar cadastrar <strong>USUÁRIO</strong> no banco de dados.
+                    </div>";
             }
         }
-
-
-    }
-    else{
-        //Usa a função header() para redirecionar o usuário para o formEstudante.php
-        header("location:formEstudante.php");
     }
 
     //Função para filtrar entrada de dados
@@ -245,5 +290,3 @@
         return($dado);
     }
 ?>
-
-<?php include "footer.php" ?>
