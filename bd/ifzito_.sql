@@ -57,7 +57,7 @@ CREATE TABLE `curso_disciplina` (
   `ano` smallint NOT NULL,
   `carga_horaria` int NOT NULL DEFAULT '80',
   `obrigatoria` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `curso_disciplina`
@@ -169,14 +169,14 @@ INSERT INTO `disciplina` (`id_disciplina`, `nome_disciplina`) VALUES
 CREATE TABLE `estudantes` (
   `id_estudante` int NOT NULL,
   `fotoEstudante` varchar(200) NOT NULL,
-  `nomeEstudante` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomeEstudante` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `dataNascimentoEstudante` date NOT NULL,
   `cursoEstudante` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ano_estudante` smallint NOT NULL,
-  `emailEstudante` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senhaEstudante` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emailEstudante` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `senhaEstudante` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `pronome` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `estudantes`
@@ -195,29 +195,12 @@ INSERT INTO `estudantes` (`id_estudante`, `fotoEstudante`, `nomeEstudante`, `dat
 
 CREATE TABLE `tarefas` (
   `idTarefa` int NOT NULL,
-  `tituloTarefa` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descricaoTarefa` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Disciplinas_id_disciplina` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
+  `nomeTarefa` varchar(30) NOT NULL,
+  `descricaoTarefa` varchar(200) NOT NULL,
+  `Disciplinas_id_disciplina` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Estrutura da tabela `anotacoes_tarefa`
---
-
-CREATE TABLE `anotacoes_tarefa` (
-  `id_anotacao` int NOT NULL,
-  `titulo` varchar(100) NOT NULL,
-  `conteudo` text NOT NULL,
-  `id_tarefa` int NOT NULL,
-  `id_estudante` int NOT NULL,
-  `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `atualizado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
 -- Índices para tabelas despejadas
 --
 
@@ -249,20 +232,6 @@ ALTER TABLE `disciplina`
 ALTER TABLE `estudantes`
   ADD PRIMARY KEY (`id_estudante`);
 
--- Índices para tabela `tarefas`
---
-ALTER TABLE `tarefas`
-  ADD PRIMARY KEY (`idTarefa`),
-  ADD KEY `fk_tarefas_disciplina` (`Disciplinas_id_disciplina`);
-
---
--- Índices para tabela `anotacoes_tarefa`
---
-ALTER TABLE `anotacoes_tarefa`
-  ADD PRIMARY KEY (`id_anotacao`),
-  ADD KEY `idx_anotacoes_tarefa_tarefa` (`id_tarefa`),
-  ADD KEY `idx_anotacoes_tarefa_estudante` (`id_estudante`);
-
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
@@ -292,18 +261,6 @@ ALTER TABLE `estudantes`
   MODIFY `id_estudante` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabelas despejadas
---
-ALTER TABLE `tarefas`
-  MODIFY `idTarefa` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `anotacoes_tarefa`
---
-ALTER TABLE `anotacoes_tarefa`
-  MODIFY `id_anotacao` int NOT NULL AUTO_INCREMENT;
-
---
 -- Restrições para despejos de tabelas
 --
 
@@ -313,19 +270,6 @@ ALTER TABLE `anotacoes_tarefa`
 ALTER TABLE `curso_disciplina`
   ADD CONSTRAINT `fk_curso_disciplina_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_curso_disciplina_disciplina` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina` (`id_disciplina`) ON DELETE RESTRICT;
-
---
--- Restrições para a tabela `tarefas`
---
-ALTER TABLE `tarefas`
-  ADD CONSTRAINT `fk_tarefas_disciplina` FOREIGN KEY (`Disciplinas_id_disciplina`) REFERENCES `disciplina` (`id_disciplina`) ON DELETE RESTRICT;
-
---
--- Restrições para tabela `anotacoes_tarefa`
---
-ALTER TABLE `anotacoes_tarefa`
-  ADD CONSTRAINT `fk_anotacoes_tarefa_tarefa` FOREIGN KEY (`id_tarefa`) REFERENCES `tarefas` (`idTarefa`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_anotacoes_tarefa_estudante` FOREIGN KEY (`id_estudante`) REFERENCES `estudantes` (`id_estudante`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
