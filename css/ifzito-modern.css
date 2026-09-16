@@ -1,0 +1,711 @@
+/*
+    IFZITO — Tema IFPR (versão mais próxima do Bootstrap)
+    Mantém a estrutura visual original e só personaliza cores e detalhes.
+*/
+
+:root {
+    --ifpr-green: #006B3F;
+    --ifpr-green-hover: #005533;
+    --ifpr-green-light: #E8F3EE;
+    --ifpr-red: #C62828;
+    --ifpr-red-light: #FBEAEA;
+    --ifpr-gray-900: #343A40;
+    --ifpr-gray-700: #5A6268;
+    --ifpr-gray-100: #F8F9FA;
+    --ifpr-border: #DEE2E6;
+}
+
+/* =========================================================
+   LOGIN E CADASTRO
+========================================================= */
+
+.auth-page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    background: #f8f9fc;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-top: 5px solid var(--ifpr-green);
+    border-radius: .5rem;
+    padding: 2rem;
+    box-shadow: 0 .35rem 1rem rgba(58,59,69,.10);
+}
+
+.auth-card-cadastro {
+    max-width: 620px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
+
+.auth-logo {
+    width: 58px;
+    height: 58px;
+    padding: 10px;
+    margin-bottom: 1rem;
+    background: var(--ifpr-green);
+    border-radius: 50%;
+}
+
+.auth-kicker {
+    display: block;
+    color: var(--ifpr-green);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+}
+
+.auth-header h2 {
+    color: #343a40;
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin-bottom: .45rem;
+}
+
+.auth-header p {
+    color: #6c757d;
+    font-size: .9rem;
+    margin-bottom: 0;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.15rem;
+}
+
+.auth-form label {
+    display: block;
+    color: #343a40;
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: .4rem;
+}
+
+.auth-form label i {
+    color: var(--ifpr-green);
+}
+
+.auth-form .form-control {
+    height: 44px;
+    border: 1px solid #ced4da;
+    border-radius: .35rem;
+    font-size: .9rem;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.auth-form .form-control:focus {
+    border-color: #73B799;
+    box-shadow: 0 0 0 .2rem rgba(0,107,63,.12);
+}
+
+.auth-form input[type="file"] {
+    height: auto;
+    padding: .55rem .75rem;
+}
+
+.auth-form select.form-control {
+    height: 44px;
+}
+
+.auth-button {
+    height: 45px;
+    margin-top: .5rem;
+    font-weight: 700;
+    border-radius: .35rem;
+}
+
+.auth-footer {
+    text-align: center;
+    border-top: 1px solid #eef0f3;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    color: #6c757d;
+    font-size: .88rem;
+}
+
+.auth-footer a {
+    color: var(--ifpr-green);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: .25rem;
+}
+
+.auth-footer a:hover {
+    color: var(--ifpr-green-hover);
+    text-decoration: underline;
+}
+
+/* Cadastro em telas menores */
+@media (max-width: 767px) {
+
+    .auth-page {
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .auth-card,
+    .auth-card-cadastro {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .auth-header h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* BASE */
+body {
+    background-color: #f8f9fc;
+    color: var(--ifpr-gray-900);
+}
+
+/* SIDEBAR — mantém o formato SB Admin 2 */
+.sidebar.bg-gradient-success,
+.sidebar.bg-gradient-primary {
+    background-color: var(--ifpr-green) !important;
+    background-image: linear-gradient(180deg, var(--ifpr-green) 10%, #004B2D 100%) !important;
+}
+
+.sidebar .nav-item .nav-link {
+    color: rgba(255,255,255,.85);
+}
+
+.sidebar .nav-item .nav-link:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,.08);
+}
+
+.sidebar .nav-item.active .nav-link {
+    color: #fff;
+    font-weight: 700;
+}
+
+.sidebar .nav-item.active .nav-link i,
+.sidebar .nav-item .nav-link i {
+    color: rgba(255,255,255,.75);
+}
+
+.sidebar hr.sidebar-divider {
+    border-top-color: rgba(255,255,255,.18);
+}
+
+/* TOPBAR */
+.topbar {
+    border-bottom: 1px solid #e3e6f0;
+}
+
+/* BOTÕES — preservando aparência Bootstrap */
+.btn-success,
+.btn-primary {
+    background-color: var(--ifpr-green);
+    border-color: var(--ifpr-green);
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--ifpr-green-hover);
+    border-color: var(--ifpr-green-hover);
+}
+
+.btn-outline-success {
+    color: var(--ifpr-green);
+    border-color: var(--ifpr-green);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--ifpr-green);
+    border-color: var(--ifpr-green);
+}
+
+/* CARDS — discretos, mais Bootstrap */
+.card {
+    border-radius: .35rem;
+    border-color: #e3e6f0;
+}
+
+.card-header {
+    background-color: #f8f9fc;
+}
+
+.border-left-success {
+    border-left-color: var(--ifpr-green) !important;
+}
+
+.border-left-primary {
+    border-left-color: var(--ifpr-red) !important;
+}
+
+/* HOME / DISCIPLINAS */
+.home-resumo-card {
+    border-left: 4px solid var(--ifpr-green);
+}
+
+.disciplina-card {
+    border-top: 3px solid var(--ifpr-green);
+    transition: box-shadow .15s ease;
+}
+
+.disciplina-card:hover {
+    box-shadow: 0 .25rem .75rem rgba(58,59,69,.10);
+}
+
+.disciplina-icon {
+    color: var(--ifpr-green);
+}
+
+.disciplina-tag {
+    display: inline-block;
+    padding: .25rem .5rem;
+    background: var(--ifpr-green-light);
+    color: var(--ifpr-green);
+    border-radius: .2rem;
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+/* FORMULÁRIOS */
+.form-control:focus,
+.custom-select:focus {
+    border-color: #73B799;
+    box-shadow: 0 0 0 .2rem rgba(0,107,63,.12);
+}
+
+/* CALENDÁRIO — leve e compatível */
+.calendario-tabela td {
+    background: #fff;
+}
+
+.dia-hoje {
+    background-color: var(--ifpr-green-light) !important;
+}
+
+.botao-adicionar-evento {
+    background-color: var(--ifpr-green);
+    border-color: var(--ifpr-green);
+}
+
+.evento-calendario {
+    background-color: var(--ifpr-green-light);
+    border-left-color: var(--ifpr-green);
+}
+
+/* BADGES E ALERTAS */
+.badge-success {
+    background-color: var(--ifpr-green);
+}
+
+.alert-success {
+    background-color: var(--ifpr-green-light);
+    border-color: #CBE4D7;
+    color: #155B38;
+}
+
+/* LINKS */
+a {
+    color: var(--ifpr-green);
+}
+
+a:hover {
+    color: var(--ifpr-green-hover);
+}
+
+
+/* =========================================================
+   AJUSTE DA HOME — mais organizada e próxima do Bootstrap
+========================================================= */
+
+:root {
+    --ifpr-red: #C62828;
+    --ifpr-red-hover: #A61F1F;
+    --ifpr-red-light: #FBEAEA;
+}
+
+.home-disciplinas {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho simples e institucional */
+.home-hero {
+    padding: 1.25rem 1rem .75rem;
+}
+
+.home-kicker {
+    display: inline-block;
+    color: var(--ifpr-green);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: .45rem;
+}
+
+.home-hero h1 {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.home-hero p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cards de resumo: maiores, claros e alinhados */
+.home-summary-row {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.home-summary-card {
+    width: 100%;
+    min-height: 150px;
+    padding: 1.35rem 1rem;
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-top: 4px solid var(--ifpr-green);
+    border-radius: .35rem;
+    box-shadow: 0 .125rem .25rem rgba(58,59,69,.06);
+}
+.summary-card-red {
+    border-top-color: var(--ifpr-red);
+}
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    margin-bottom: .6rem;
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.summary-icon-green {
+    color: var(--ifpr-green);
+    background: var(--ifpr-green-light);
+}
+
+.summary-icon-red {
+    color: var(--ifpr-red);
+    background: var(--ifpr-red-light);
+}
+
+.summary-label {
+    color: #6c757d;
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.summary-number {
+    color: #343a40;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: .2rem;
+}
+
+.summary-course {
+    color: #343a40;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: .45rem;
+}
+
+/* Separação mais limpa da seção */
+.home-section-header {
+    border-top: 1px solid #e3e6f0;
+    padding-top: 1.5rem;
+}
+
+.home-section-header h2 {
+    color: #343a40;
+    font-weight: 600;
+}
+
+/* Cards das disciplinas: mais visíveis e menos informação */
+.disciplina-card {
+    height: 100%;
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-top: 4px solid var(--ifpr-green);
+    border-radius: .35rem;
+    padding: 1.35rem;
+    box-shadow: 0 .125rem .25rem rgba(58,59,69,.06);
+    text-align: center;
+    transition: box-shadow .15s ease, transform .15s ease;
+}
+
+.disciplina-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 .35rem .8rem rgba(58,59,69,.10);
+}
+
+.disciplina-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 46px;
+    margin-bottom: .9rem;
+}
+
+.disciplina-icon {
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+    background: var(--ifpr-green-light);
+    color: var(--ifpr-green);
+    border-radius: 50%;
+    font-size: 1.15rem;
+}
+
+.disciplina-number {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #adb5bd;
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.disciplina-content h3 {
+    color: #343a40;
+    font-size: 1.08rem;
+    font-weight: 700;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.disciplina-content p {
+    color: #6c757d;
+    font-size: .88rem;
+}
+
+.disciplina-card-footer {
+    border-top: 1px solid #eef0f3;
+    margin-top: 1rem;
+    padding-top: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #6c757d;
+    font-size: .78rem;
+}
+
+.disciplina-card-footer > span:first-child {
+    color: var(--ifpr-red);
+    font-weight: 600;
+}
+
+.disciplina-course {
+    color: var(--ifpr-green);
+    font-weight: 600;
+}
+
+/* Mais vermelho nos detalhes de ação */
+.btn-outline-danger {
+    color: var(--ifpr-red);
+    border-color: var(--ifpr-red);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--ifpr-red);
+    border-color: var(--ifpr-red);
+}
+
+.text-danger,
+.disciplina-card .fa-bookmark {
+    color: var(--ifpr-red) !important;
+}
+
+@media (max-width: 767px) {
+    .home-summary-card {
+        min-height: 130px;
+    }
+
+    .disciplina-content h3 {
+        min-height: auto;
+    }
+}
+
+/* =========================================================
+   IFZITO — ASSISTENTE
+========================================================= */
+
+.ifzito-assistente {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 1050;
+}
+
+.ifzito-botao {
+    width: 58px;
+    height: 58px;
+    border: none;
+    border-radius: 50%;
+    background: var(--ifpr-green);
+    color: #fff;
+    font-size: 1.35rem;
+    box-shadow: 0 .25rem .8rem rgba(0,0,0,.18);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.ifzito-botao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 .4rem 1rem rgba(0,0,0,.22);
+}
+
+.ifzito-chat {
+    position: absolute;
+    right: 0;
+    bottom: 72px;
+    width: 330px;
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-radius: .6rem;
+    box-shadow: 0 .5rem 1.5rem rgba(58,59,69,.18);
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all .18s ease;
+}
+
+.ifzito-chat.aberto {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ifzito-chat-header {
+    display: flex;
+    align-items: center;
+    padding: .9rem 1rem;
+    background: var(--ifpr-green);
+    color: #fff;
+}
+
+.ifzito-robot-icon {
+    width: 42px;
+    height: 42px;
+    margin-right: .7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.15);
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.ifzito-chat-header strong {
+    display: block;
+    font-size: 1rem;
+}
+
+.ifzito-chat-header small {
+    display: block;
+    opacity: .85;
+    font-size: .72rem;
+}
+
+.ifzito-fechar {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.ifzito-chat-body {
+    padding: 1rem;
+    color: #343a40;
+    font-size: .88rem;
+}
+
+.ifzito-chat-body p {
+    margin-bottom: .6rem;
+}
+
+.ifzito-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+    margin-top: .9rem;
+}
+
+.ifzito-opcoes a,
+.ifzito-opcoes button {
+    width: 100%;
+    padding: .6rem .7rem;
+    border: 1px solid #dce9e2;
+    border-radius: .35rem;
+    background: var(--ifpr-green-light);
+    color: var(--ifpr-green);
+    text-align: left;
+    font-size: .82rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ifzito-opcoes a:hover,
+.ifzito-opcoes button:hover {
+    background: #dcefe5;
+    text-decoration: none;
+}
+
+.ifzito-opcoes i {
+    width: 20px;
+    margin-right: .3rem;
+}
+
+.ifzito-dica {
+    display: none;
+    margin-top: .8rem;
+    padding: .7rem;
+    background: #f8f9fc;
+    border-left: 3px solid var(--ifpr-red);
+    border-radius: .25rem;
+    color: #5a6268;
+    font-size: .8rem;
+}
+
+.ifzito-dica.visivel {
+    display: block;
+}
+
+@media (max-width: 767px) {
+
+    .ifzito-assistente {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .ifzito-chat {
+        width: calc(100vw - 30px);
+        max-width: 330px;
+    }
+}

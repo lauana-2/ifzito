@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/09/2026 às 18:45
+-- Tempo de geração: 16/09/2026 às 02:38
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -36,15 +36,6 @@ CREATE TABLE `anotacoes_tarefa` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   `atualizado_em` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `anotacoes_tarefa`
---
-
-INSERT INTO `anotacoes_tarefa` (`id_anotacao`, `titulo`, `conteudo`, `id_tarefa`, `id_estudante`, `criado_em`, `atualizado_em`) VALUES
-(5, 'nao sei fazer aquilo lá', 'aaaaaaaaaaaaaaaaaaaaaa', 1, 5, '2026-09-02 16:38:51', '2026-09-02 16:38:51'),
-(6, 'nao sei fazer aquilo lá', 'a', 1, 5, '2026-09-02 17:15:48', '2026-09-02 17:15:48'),
-(7, 'a tarefa dificil', 'nao sei faze', 1, 10, '2026-09-02 17:21:26', '2026-09-02 17:21:26');
 
 -- --------------------------------------------------------
 
@@ -216,33 +207,9 @@ INSERT INTO `estudantes` (`id_estudante`, `fotoEstudante`, `nomeEstudante`, `dat
 (8, 'img/Captura de tela 2026-07-08 000034.png', 'testee', '2026-08-05', 'TECINF', 1, 't@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nulo'),
 (9, 'img/Captura de tela 2026-07-08 000034.png', 'testee', '2026-08-05', 'TECINF', 1, 't@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nulo'),
 (10, 'img/fotodeperfil.png', 'Aluno Feliz', '2026-07-15', 'TECINF', 1, 'aluno@gmail.com', '202cb962ac59075b964b07152d234b70', 'Ele'),
-(11, 'img/fotodeperfil.png', 'Aluno Feliz', '2026-02-04', 'TECINF', 3, 'alunoo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Ele');
+(11, 'img/fotodeperfil.png', 'Aluno Feliz', '2026-02-04', 'TECINF', 3, 'alunoo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Ele'),
+(12, 'img/11-brasrun-braspine-telemaco-borba-74847-5630054.jpeg', 'aluno', '2009-03-12', 'TECINF', 1, 'aluno@gmail.com', '202cb962ac59075b964b07152d234b70', 'Ele');
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `tarefas`
---
-
-CREATE TABLE `tarefas` (
-  `idTarefa` int(11) NOT NULL,
-  `nomeTarefa` varchar(30) NOT NULL,
-  `descricaoTarefa` varchar(200) NOT NULL,
-  `Disciplinas_id_disciplina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `tarefas`
---
-
-INSERT INTO `tarefas` (`idTarefa`, `nomeTarefa`, `descricaoTarefa`, `Disciplinas_id_disciplina`) VALUES
-(1, '', 'pipipipopopo', 18);
-
---
--- Índices para tabelas despejadas
---
-
---
 -- --------------------------------------------------------
 
 --
@@ -260,19 +227,28 @@ CREATE TABLE `eventos` (
 
 -- --------------------------------------------------------
 
+--
+-- Estrutura para tabela `tarefas`
+--
+
+CREATE TABLE `tarefas` (
+  `idTarefa` int(11) NOT NULL,
+  `nomeTarefa` varchar(30) NOT NULL,
+  `descricaoTarefa` varchar(200) NOT NULL,
+  `Disciplinas_id_disciplina` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
 -- Índices de tabela `anotacoes_tarefa`
 --
 ALTER TABLE `anotacoes_tarefa`
   ADD PRIMARY KEY (`id_anotacao`),
   ADD KEY `idx_anotacoes_tarefa_tarefa` (`id_tarefa`),
   ADD KEY `idx_anotacoes_tarefa_estudante` (`id_estudante`);
-
---
--- Índices de tabela `eventos`
---
-ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`id_evento`),
-  ADD KEY `idx_eventos_estudante_data` (`id_estudante`, `data_evento`);
 
 --
 -- Índices de tabela `curso`
@@ -303,6 +279,13 @@ ALTER TABLE `estudantes`
   ADD PRIMARY KEY (`id_estudante`);
 
 --
+-- Índices de tabela `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`id_evento`),
+  ADD KEY `idx_eventos_estudante_data` (`id_estudante`,`data_evento`);
+
+--
 -- Índices de tabela `tarefas`
 --
 ALTER TABLE `tarefas`
@@ -316,17 +299,11 @@ ALTER TABLE `tarefas`
 -- AUTO_INCREMENT de tabela `anotacoes_tarefa`
 --
 ALTER TABLE `anotacoes_tarefa`
-  MODIFY `id_anotacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_anotacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
---
--- AUTO_INCREMENT de tabela `eventos`
---
-ALTER TABLE `eventos`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
-
 ALTER TABLE `curso`
   MODIFY `id_curso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
@@ -346,13 +323,19 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT de tabela `estudantes`
 --
 ALTER TABLE `estudantes`
-  MODIFY `id_estudante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_estudante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tarefas`
 --
 ALTER TABLE `tarefas`
-  MODIFY `idTarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
@@ -368,12 +351,15 @@ ALTER TABLE `anotacoes_tarefa`
 --
 -- Restrições para tabelas `curso_disciplina`
 --
-ALTER TABLE `eventos`
-  ADD CONSTRAINT `fk_eventos_estudante` FOREIGN KEY (`id_estudante`) REFERENCES `estudantes` (`id_estudante`) ON DELETE CASCADE;
-
 ALTER TABLE `curso_disciplina`
   ADD CONSTRAINT `fk_curso_disciplina_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_curso_disciplina_disciplina` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina` (`id_disciplina`);
+
+--
+-- Restrições para tabelas `eventos`
+--
+ALTER TABLE `eventos`
+  ADD CONSTRAINT `fk_eventos_estudante` FOREIGN KEY (`id_estudante`) REFERENCES `estudantes` (`id_estudante`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
