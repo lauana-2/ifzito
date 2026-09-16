@@ -163,7 +163,7 @@ include "header.php";
 
                     <div>
                         <small class="text-muted d-block">Data de entrega:</small>
-                        <span class="text-gray-800">#<?php echo (int) $tarefa['idTarefa']; ?></span>
+                        <span class="text-gray-800">#</span>
                     </div>
                 </div>
             </div>
